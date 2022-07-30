@@ -17,8 +17,26 @@
                         <!-- {{m.money_info|linebreaks}} for future use -->
                         <td>{{m.money_info}}</td>
                         <td>
-                            <a href="{% url 'money_data:edit_log' m.id %}">ed</a>
-                            <button type="submit" name="del_button" onclick="location.href='{% url 'money_data:delete_log' m.id %}'">de</button>
+                                <button
+                                    href="{% url 'money_data:edit_log' m.id %}"
+                                    class="icon-button">
+                                    <img 
+                                        class="icon" 
+                                        src="{% static 'money_data/assets/icons8-edit-24.png' %}" 
+                                        width="15" />
+                                </button>
+                            
+                                <button 
+                                    class="icon-button"
+                                    type="submit" 
+                                    name="del_button" 
+                                    onclick="location.href='{% url 'money_data:delete_log' m.id %}'">
+                                    <img 
+                                    id="del-button"
+                                        class="icon" 
+                                        width="15" 
+                                        src="{% static 'money_data/assets/icons8-trash-30.png' %}"/>
+                                </button>
                         </td>
                 {% empty %}
                     Add logs down below
