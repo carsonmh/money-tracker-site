@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'money_data/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="navbar">
+    <ul>
+        <li><a href="{% url 'money_data:index' %}">home</a></li>
+        <li><a href="{% url 'money_data:moneylogs' %}">moneylogs</a></li>
+    </ul>
+    <ul>
+    {% if user.is_authenticated %}
+        <li>hello, {{user.username }}</li>
+        <li><a href="{% url 'users:logout' %}">logout</a></li>
+    {% else %}
+        <li><a href="{% url 'users:login' %}">login</a></li>
+        <li><a href="{% url 'users:register' %}">register</a></li>
+    {% endif %}
+    </ul>
+</div>
+<script src="{% static 'money_data/script.js' %}"></script>
+
+
+{% block content %}{% endblock content %}

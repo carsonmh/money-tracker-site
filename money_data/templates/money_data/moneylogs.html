@@ -1,0 +1,41 @@
+{% extends "money_data/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="main">
+    <table>
+            <tr>
+                <th># +/-</th>
+                <th>date</th>
+                <th>notes</th>
+                <th>edit</th>
+            </tr>
+            {% for m in moneylogs %}
+                <tr>
+                        <td>{{m}}</td>
+                        <td>{{m.date_added|date:'M d, Y H:i' }}</td>
+                        <!-- {{m.money_info|linebreaks}} for future use -->
+                        <td>{{m.money_info}}</td>
+                        <td>
+                            <a href="{% url 'money_data:edit_log' m.id %}">ed</a>
+                            <button type="submit" name="del_button" onclick="location.href='{% url 'money_data:delete_log' m.id %}'">de</button>
+                        </td>
+                {% empty %}
+                    Add logs down below
+                {% endfor %}
+                </tr>
+    </table>
+    <p>Net profit/loss: {{ money_sum }}</p>
+    <div id="formElement">
+        <form action="{% url 'money_data:moneylogs' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit" onclick="hideForm()">confirm</button>
+        </form>
+    </div>
+    <div id="buttonElement">
+        <button id="showFormButton" onclick="showForm()">new log</button>
+    </div>
+</div>
+<script src="{% static 'money_data/script.js' %}"></script>
+{% endblock content %}

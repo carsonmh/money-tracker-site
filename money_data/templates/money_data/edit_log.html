@@ -1,0 +1,12 @@
+{% extends 'money_data/base.html' %}
+{% load static %}
+
+{% block content %}
+    <p>edit log:</p>
+
+    <form action="{% url 'money_data:edit_log' log.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">save changes</button>
+    </form>
+{% endblock content %}
