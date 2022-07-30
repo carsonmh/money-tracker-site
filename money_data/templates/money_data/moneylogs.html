@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="main">
+<div class="main" id="main">
     <table>
             <tr>
                 <th># +/-</th>
@@ -18,7 +18,7 @@
                         <td>{{m.money_info}}</td>
                         <td>
                                 <button
-                                    href="{% url 'money_data:edit_log' m.id %}"
+                                    onclick="location.href='{% url 'money_data:edit_log' m.id %}'"
                                     class="icon-button">
                                     <img 
                                         class="icon" 
@@ -28,14 +28,19 @@
                             
                                 <button 
                                     class="icon-button"
-                                    type="submit" 
-                                    name="del_button" 
-                                    onclick="location.href='{% url 'money_data:delete_log' m.id %}'">
+                                    type="submit"
+                                    name="del_button"
+                                    onclick="
+                                    sessionStorage.setItem('id', {{m.id}});
+                                    trashCanPopUp();
+                                    "
+                                >
                                     <img 
-                                    id="del-button"
+                                        id="del-button"
                                         class="icon" 
                                         width="15" 
-                                        src="{% static 'money_data/assets/icons8-trash-30.png' %}"/>
+                                        src="{% static 'money_data/assets/icons8-trash-30.png' %}"
+                                        />
                                 </button>
                         </td>
                 {% empty %}
@@ -53,6 +58,26 @@
     </div>
     <div id="buttonElement">
         <button id="showFormButton" onclick="showForm()">new log</button>
+    </div>
+</div>
+<div id="popup">
+    <div>
+        <h2>Are you sure?</h2>
+    </div>
+    <div>
+        <p>Deleting this item is an action that cannot be undone</p>
+    </div>
+    <div class="buttons">
+        <div class="confirm-button" id="yes-button">
+            <a href="#" onclick="trashCanPopUp()
+            var id = sessionStorage.getItem('id');
+            var url = `{% url 'money_data:delete_log' log_id=1234 %}`.replace(/1234/, id)
+            location.href = url;"
+            >yes</a>
+        </div>
+        <div class="confirm-button" id="no-button">
+            <a href="#" onclick="trashCanPopUp()">no</a>
+        </div>
     </div>
 </div>
 <script src="{% static 'money_data/script.js' %}"></script>
