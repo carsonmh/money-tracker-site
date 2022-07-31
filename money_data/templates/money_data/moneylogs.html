@@ -3,62 +3,78 @@
 
 {% block content %}
 <div class="main" id="main">
-    <table>
-            <tr>
-                <th># +/-</th>
-                <th>date</th>
-                <th>notes</th>
-                <th>edit</th>
-            </tr>
-            {% for m in moneylogs %}
-                <tr>
-                        <td>{{m}}</td>
-                        <td>{{m.date_added|date:'M d, Y H:i' }}</td>
-                        <!-- {{m.money_info|linebreaks}} for future use -->
-                        <td>{{m.money_info}}</td>
-                        <td>
-                                <button
-                                    onclick="location.href='{% url 'money_data:edit_log' m.id %}'"
-                                    class="icon-button">
-                                    <img 
-                                        class="icon" 
-                                        src="{% static 'money_data/assets/icons8-edit-24.png' %}" 
-                                        width="15" />
-                                </button>
-                            
-                                <button 
-                                    class="icon-button"
-                                    type="submit"
-                                    name="del_button"
-                                    onclick="
-                                    sessionStorage.setItem('id', {{m.id}});
-                                    trashCanPopUp();
-                                    "
-                                >
-                                    <img 
-                                        id="del-button"
-                                        class="icon" 
-                                        width="15" 
-                                        src="{% static 'money_data/assets/icons8-trash-30.png' %}"
-                                        />
-                                </button>
-                        </td>
-                {% empty %}
-                    Add logs down below
-                {% endfor %}
-                </tr>
-    </table>
-    <p>Net profit/loss: {{ money_sum }}</p>
-    <div id="formElement">
-        <form action="{% url 'money_data:moneylogs' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button name="submit" onclick="hideForm()">confirm</button>
-        </form>
+    <div id="top">
+        <div class="form-element" id="form-element">
+            <form action="{% url 'money_data:moneylogs' %}" method="post">
+                {% csrf_token %}
+                <div id="inner-form">
+                    <div class="side-to-side-input">
+                        <label for="money_made-input">Money Made</label>
+                        <ul class="errorlist"><li>This field is required.</li></ul>
+                        <input type="number" name="money_made" placeholder="Amount" class="form-input" id="money_made-input" step="any" required="">
+                        <label for="date_added-input">Date</label>
+                        <input type="date" name="date_added" value="2022-07-31" class="form-input" id="date_added-input" required="">
+                    </div>
+                    <div>
+                        <label for="money_info-input">Extra Info (optional)</label>
+                        <textarea name="money_info" cols="40" rows="10" class="form-input" id="money_info-input"></textarea>
+                    </div>
+                </div>
+                <button class="confirm-button" id="form-confirm-button" name="submit">New Log</button>
+            </form>
+        </div>
+        <!-- <button id="buttonElement" onclick="showForm()">new form</button> -->
     </div>
-    <div id="buttonElement">
-        <button id="showFormButton" onclick="showForm()">new log</button>
+    <div id="outter-table-element">
+        <div id="table-element">
+            <table>
+                    <tr>
+                        <th>date</th>
+                        <th>amount</th>
+                        <th>notes</th>
+                        <th>edit</th>
+                    </tr>
+                    {% for m in moneylogs %}
+                        <tr>
+                            <td>{{m.date_added|date:'M d, Y' }}</td>
+                                <td>${{m}}</td>
+                            <!-- {{m.money_info|linebreaks}} for future use -->
+                                <td>{{m.money_info}}</td>
+                                <td>
+                                    <button
+                                        onclick="location.href='{% url 'money_data:edit_log' m.id %}'"
+                                        class="icon-button">
+                                        <img
+                                            class="icon" 
+                                            src="{% static 'money_data/assets/icons8-edit-24.png' %}" 
+                                            width="15" />
+                                    </button>
+                                
+                                    <button 
+                                        class="icon-button"
+                                        type="submit"
+                                        name="del_button"
+                                        onclick="
+                                        sessionStorage.setItem('id', {{m.id}});
+                                        trashCanPopUp();
+                                        "
+                                    >
+                                        <img 
+                                            id="del-button"
+                                            class="icon" 
+                                            width="15" 
+                                            src="{% static 'money_data/assets/icons8-trash-30.png' %}"
+                                            />
+                                    </button>
+                                </td>
+                        {% empty %}
+                        {% endfor %}
+                        </tr>
+            </table>
+        </div>
     </div>
+    <p id="bottom-table">Net profit/loss: ${{ money_sum }}</p>
+
 </div>
 <div id="popup">
     <div>

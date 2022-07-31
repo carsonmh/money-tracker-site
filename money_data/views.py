@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import MoneyLog
 from .forms import MoneyForm
 from django.http import HttpResponseRedirect, Http404
-
+from datetime import date
 # Create your views here.
 
 def index(request):
@@ -14,11 +14,11 @@ def index(request):
 
 @login_required
 def money(request):
-    moneylogs = MoneyLog.objects.filter(owner=request.user).order_by('date_added')
+    moneylogs = MoneyLog.objects.filter(owner=request.user).order_by('-date_added')
 
     # render and process add form
     if request.method != 'POST': 
-        form = MoneyForm
+        form = MoneyForm({'date_added': date.today()})
     else:
         form = MoneyForm(data=request.POST)
         if form.is_valid():

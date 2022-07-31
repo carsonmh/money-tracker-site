@@ -1,8 +1,9 @@
 var buttonElement = document.getElementById("buttonElement");
-var formElement = document.getElementById("formElement");
+var formElement = document.getElementById("form-element");
+// document.getElementById('id_date_field').valueAsDate = new Date();
 
 function showForm (){
-    formElement.style.display = "block";
+    formElement.style.display = "flex";
     buttonElement.style.display = "none";
 }
 

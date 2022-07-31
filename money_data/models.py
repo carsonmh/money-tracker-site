@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class MoneyLog(models.Model):
     """A class for logging money that the user has made"""
     money_made = models.FloatField(help_text="")
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=False)
     money_info = models.TextField(default="", blank=True)
     anonymous = models.BooleanField(default=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
