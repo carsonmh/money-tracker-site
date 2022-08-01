@@ -7,8 +7,7 @@ from .models import MoneyLog
 from .forms import MoneyForm
 from django.http import HttpResponseRedirect, Http404
 from datetime import date
-import random
-import plotly.express as px
+# import plotly.express as px
 import plotly
 import pandas
 # Create your views here.
@@ -78,7 +77,7 @@ def line_chart(request):
 
     
     df = pandas.DataFrame(dict(x=xdata, y=ydata))
-    fig = px.line(
+    fig = plotly.express.line(
         df, 
         x="x", 
         y="y", 
