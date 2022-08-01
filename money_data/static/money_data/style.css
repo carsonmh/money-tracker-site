@@ -133,9 +133,9 @@ h1 {
   text-align: center;
   opacity: 1;
 }
-.dropdown-content a:hover {
-  /* background-color: #ddd; */
-}
+/* .dropdown-content a:hover {
+  background-color: #ddd;
+} */
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -419,4 +419,33 @@ label {
 #inner-form {
   display: flex;
   flex-direction: space-between;
+}
+
+/* data */
+.main-svg {
+  margin-top: 1em;
+  border: 1px solid rgb(154, 154, 154), 0.5;
+  border-radius: 15px;
+  padding: 1em;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  margin: 2em;
+}
+
+#statistics {
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stat {
+  padding: 1em;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  background-color: white;
+  margin: 0.2em;
+}
+
+.stat h1 {
+  padding: 0;
+  font-size: 1.6em;
 }

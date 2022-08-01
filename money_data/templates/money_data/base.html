@@ -12,18 +12,18 @@
     <body>
         <div class="navbar" id="navbar">
             <ul>
-                <li><a href="{% url 'money_data:index' %}">home</a></li>
-                <li><a href="{% url 'money_data:moneylogs' %}">moneylogs</a></li>
+                <li><a href="{% url 'money_data:index' %}">Home</a></li>
+                <li><a href="{% url 'money_data:moneylogs' %}">Logs</a></li>
             </ul>
             <ul>
             {% if user.is_authenticated %}
                     <li id="dropdown-li">
                         <div class="dropdown">
-                            <button>hello, {{user.username }}
+                            <button>Hello, {{user.username }}
                                 <i class="fa-solid fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content">
-                                <a href="#">Data</a>
+                                <a href="{% url 'money_data:data' %}">Data</a>
                                 <a href="{% url 'users:logout' %}">Logout</a>
                             </div>
                         </div>
@@ -37,6 +37,5 @@
         </div>
         {% block content %}{% endblock content %}
         <script type="text/javascript" src="{% static 'money_data/script.js' %}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     </body>
 </html>

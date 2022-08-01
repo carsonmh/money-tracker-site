@@ -1,0 +1,39 @@
+{% extends 'money_data/base.html' %}
+{% block content %}
+    <!-- {% load nvd3_tags %}
+    <head>
+        {# Jquery CDN : Needed when using jquery_on_ready=True #}
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        {% include_chart_jscss %}
+        {% load_chart charttype chartdata chartcontainer extra %}
+    </head>
+    <body>
+        <h1 id="graph-header">Profit Graph</h1>
+        {% include_container chartcontainer %}
+        <p id="x-label">session #</p>
+    </body> -->
+    <div id="statistics">
+        <div class="stat">
+            <h1>Average/session</h1>
+            <p>100</p>
+        </div>
+        <div class="stat">
+            <h1>Average/session</h1>
+            <p>100</p>
+        </div>
+        <div class="stat">
+            <h1>Average/session</h1>
+            <p>100</p>
+        </div>
+    </div>
+    <div style="width:1000;height:100" class="graph-div">
+        {{ graph_div|safe }}
+    </div>
+{% endblock content %}
+<!--TODO: 
+    - make responsive grid design for the session data
+    - figure out sizing for the graph
+    - style login/register/edit log page (shouldn't be redundant)
+
+    -Deploy!
+-->
