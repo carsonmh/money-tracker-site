@@ -2,12 +2,28 @@
 {% load static %}
 
 {% block content %}
+    <div class="center">
 
-<form method="post" action="{% url 'users:register' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit">register</button>
-    <input type="hidden" name="next" value="{% url 'money_data:index' %}">
-</form>
+        <div class="form-element login-register register">
+            <h1>Registration</h1>
+
+            <form method="post" action="{% url 'users:register' %}">
+                {% csrf_token %}
+
+                <input class="my-username-class form-input login-input" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" placeholder="username"></p>
+                <!-- <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span> -->
+                <input class="my-username-class form-input login-input" type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="password"></p>
+                <!-- <span class="helptext"></span></p><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul> -->
+                <input class="my-username-class form-input login-input" type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="confirm password"></p>
+                <button class="confirm-button form-confirm-button" name="submit">Register</button>
+                <input type="hidden" name="next" value="{% url 'money_data:index' %}">
+            </form>
+        <p>Already have an account? <a href="{% url 'users:login' %}">log in</a></p>
+
+        </div>
+        {% if form.errors %}
+                <p class="login-errors">your username and password didn't match</p>
+        {% endif %}
+    </div>
 
 {% endblock content %}

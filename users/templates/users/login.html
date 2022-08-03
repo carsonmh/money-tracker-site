@@ -2,16 +2,22 @@
 {% load static %}
 
 {% block content %}
-    {% if form.errors %}
-        <p>your username and password didn't match</p>
-    {% endif %}
-
-    <form method="post" action="{% url 'users:login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">log in</button>
-        <input type="hidden" name="next" value="{% url 'money_data:moneylogs' %}" />
-    </form>
+    <div class="center">
+        <div class="form-element login-register">
+            <h1>Welcome back</h1>
+            <form method="post" action="{% url 'users:login' %}">
+                {% csrf_token %}
+                <input class="my-username-class form-input login-input" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="my-username-class" required="" id="id_username" placeholder="username"></p>
+                <input class="my-password-class form-input login-input" type="password" name="password" autocomplete="current-password" class="my-password-class" required="" id="id_password" placeholder="password"></p>
+                <input type="hidden" name="next" value="{% url 'money_data:moneylogs' %}" />
+                <button class="confirm-button form-confirm-button" name="submit">log in</button>
+            </form>
+            <p>Don't have an account? <a href="{% url 'users:register' %}">register</a></p>
+        </div>
+        {% if form.errors %}
+            <p class="login-errors">your username and password didn't match</p>
+        {% endif %}
+    </div>
 
 {% endblock content %}
 

@@ -1,4 +1,5 @@
 from django import forms
+from datetime import date
 
 from .models import MoneyLog
 
@@ -20,6 +21,7 @@ class MoneyForm(forms.ModelForm):
             'date_added': forms.DateInput(attrs={
                 'class': 'form-input', 
                 'type':'date',
-                'id': 'date_added-input'
+                'id': 'date_added-input',
+                'value': date.today()
                 })
         }

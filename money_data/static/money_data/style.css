@@ -5,6 +5,7 @@
   --dark-grey: rgb(154, 154, 154);
   --dark-green: #fff;
   --light-green: #fff;
+  --dark-blue: rgb(54, 48, 75);
 }
 
 body {
@@ -190,6 +191,22 @@ th:nth-child(2) {
   text-align: right;
 }
 
+@media only screen and (max-width: 500px) {
+  td:nth-child(1) {
+    padding-right: 0;
+    padding-left: 10px;
+    font-size: 15px;
+  }
+  td:nth-child(2) {
+    padding-right: 10px;
+    padding-left: 0;
+    font-size: 15px;
+  }
+  /* th:nth-child(1) {
+    padding: 0;
+  } */
+}
+
 th:nth-child(4) {
   text-align: center;
 }
@@ -211,7 +228,7 @@ tr:nth-child(odd) {
   background-color: var(--white);
 }
 tr:nth-child(1) {
-  background-color: rgb(54, 48, 75);
+  background-color: var(--dark-blue);
   color: white;
   position: sticky;
   top: 0;
@@ -250,13 +267,13 @@ li a {
 
 /* trash can confirmation */
 .navbar.active {
-  filter: blur(4px);
+  filter: blur(7px);
   pointer-events: none;
   user-select: none;
 }
 
 .main.active {
-  filter: blur(4px);
+  filter: blur(7px);
   pointer-events: none;
   user-select: none;
 }
@@ -307,7 +324,7 @@ li a {
 }
 
 .confirm-button {
-  border-radius: 10px;
+  border-radius: 7px;
   padding: 0.5em;
   margin-right: 1em;
   width: 25%;
@@ -396,15 +413,16 @@ label {
   margin: 0.5em;
 }
 
-#form-confirm-button {
+.form-confirm-button {
   width: 100%;
   padding: 0.75em;
   background-color: rgb(45, 180, 52);
   color: var(--white);
   margin-top: 1em;
 }
-#form-confirm-button:hover {
-  background-color: rgb(26, 209, 59);
+
+.form-confirm-button:hover {
+  background-color: rgb(30, 199, 61);
 }
 
 #buttonElement {
@@ -425,27 +443,129 @@ label {
 .main-svg {
   margin-top: 1em;
   border: 1px solid rgb(154, 154, 154), 0.5;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 1em;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   margin: 2em;
 }
+.graph-div {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 5em;
+}
+
+@media only screen and (max-width: 500px) {
+  .main-svg {
+    width: 92vw;
+    position: relative;
+    margin: 0;
+    margin-top: 1em;
+    padding: 0;
+    padding-left: 0.5em;
+  }
+  .graph-div {
+    width: 120vw;
+    padding-right: 3.5em;
+  }
+}
 
 #statistics {
-  padding: 2em;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: 1fr;
 }
 
 .stat {
   padding: 1em;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  border-radius: 7px;
   background-color: white;
-  margin: 0.2em;
 }
 
+.stat p {
+  margin-bottom: 0;
+  margin-top: 0.5em;
+  font-size: 2em;
+}
 .stat h1 {
   padding: 0;
-  font-size: 1.6em;
+  font-size: 0.8em;
+}
+
+.red-text p {
+  color: red;
+}
+
+.green-text p {
+  color: green;
+}
+
+/* homepage */
+.homepage {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headers {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage h1 {
+  font-size: 3em;
+}
+
+.homepage h2 {
+  color: var(--dark-grey);
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.subheader {
+  width: 75%;
+}
+
+/* login/register */
+.login-input {
+  width: 100%;
+  font-family: inherit;
+}
+
+.center {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 1em 0 1em;
+}
+
+.login-register {
+  height: 20em;
+  text-align: center;
+}
+
+.login-register p a {
+  text-decoration: underline;
+}
+
+.login-errors {
+  position: absolute;
+  color: red;
+  bottom: 200px;
+}
+
+@media only screen and (max-width: 500px) {
+  .login-errors {
+    bottom: 300px;
+  }
+}
+
+.register {
+  height: 23em;
 }
