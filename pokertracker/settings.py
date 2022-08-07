@@ -86,9 +86,6 @@ DATABASES = {
 
 APPLICATION_DIR = os.path.dirname(globals()['__file__']) + '/../'
 
-STATIC_ROOT = os.path.join(APPLICATION_DIR, 'money_data', 'static')
-
-
 # Heroku: Update database configuration from $DATABASE_URL.
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=500)
@@ -160,6 +157,7 @@ if cwd == '/app' or cwd[:4] == '/tmp':
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = os.path.join(APPLICATION_DIR, 'money_data', 'static')
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
