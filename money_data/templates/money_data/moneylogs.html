@@ -5,8 +5,8 @@
 <div class="main" id="main">
     <div id="top">
         <div class="form-element" id="form-element">
+            {% csrf_token %}
             <form action="{% url 'money_data:moneylogs' %}" method="post">
-                {% csrf_token %}
                 <div id="inner-form">
                     <div class="side-to-side-input">
                         <label for="money_made-input">Money Made</label>
