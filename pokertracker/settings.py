@@ -23,10 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'z7e7t0(0iojoj)zechvua40fq(#6q)oaoykhl(-vg_*jz-)5!)')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
-
 ALLOWED_HOSTS = []
 
 DEBUG = True
@@ -162,7 +158,7 @@ if cwd == '/app' or cwd[:4] == '/tmp':
 
     ALLOWED_HOSTS = ['*']
 
-    BASE_DIR = os.path.dirname(os.path.abspath)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static')
