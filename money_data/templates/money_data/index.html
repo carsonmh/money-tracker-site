@@ -12,8 +12,16 @@
             </div>
             <div style="padding: 2em;"></div>
             <div class="login-buttons">
-                <button>login</button>
-                <button>register</button>
+                <a href="{% url 'users:login' %}">
+                    <button class="login-register-button">
+                        login
+                    </button>
+                </a>
+                <a href="{% url 'users:register' %}">
+                    <button href="{% url 'users:login' %}" class="login-register-button">
+                        register
+                    </button>
+                </a>
             </div>
         </div>
     </div>

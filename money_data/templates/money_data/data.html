@@ -3,25 +3,27 @@
 {% load mathfilters %}
 
 <div class="main">
-    <div id="statistics">
-        {% for key, value in data.items %}
-            {% if value > 0 %}
-                <div class="stat green-text">
-                    <h1>{{ key }}</h1>
-                    <p>${{ value }}</p>
-                </div>
-            {% elif 0 > value %}
-                <div class="stat red-text">
-                    <h1>{{ key }}</h1>
-                    <p>-${{ value|abs }}</p>
-                </div>
-            {% else %}
-                <div class="stat">
-                    <h1>{{ key }}</h1>
-                    <p>${{ value }}</p>
-                </div>
-            {% endif %}
-        {% endfor %}
+    <div style="width: 100%;">
+        <div id="statistics">
+            {% for key, value in data.items %}
+                {% if value > 0 %}
+                    <div class="stat green-text">
+                        <h1>{{ key }}</h1>
+                        <p>${{ value }}</p>
+                    </div>
+                {% elif 0 > value %}
+                    <div class="stat red-text">
+                        <h1>{{ key }}</h1>
+                        <p>-${{ value|abs }}</p>
+                    </div>
+                {% else %}
+                    <div class="stat">
+                        <h1>{{ key }}</h1>
+                        <p>${{ value }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     <div style="width: 100%;">
         <div  class="graph-div">

@@ -35,6 +35,7 @@ html {
   display: flex;
   flex-direction: column;
   padding: 1em 1em 0 1em;
+  align-items: center;
 }
 
 #main {
@@ -568,4 +569,41 @@ label {
 
 .register {
   height: 23em;
+}
+
+.login-buttons a {
+  text-decoration: none;
+}
+
+.login-register-button {
+  border-radius: 7px;
+  padding: 0.5em;
+  margin-right: 1em;
+  background-color: var(--dark-blue);
+  border: none;
+  color: var(--dark-grey);
+  font-family: inherit;
+  width: 5em;
+  color: white;
+}
+
+.login-register-button:hover {
+  background-color: rgb(60, 53, 87);
+  cursor: pointer;
+}
+
+.registration-errors {
+  position: absolute;
+  color: red;
+  bottom: 180px;
+}
+
+@media only screen and (max-width: 500px) {
+  .registration-errors {
+    bottom: 260px;
+  }
+}
+
+#edit-log-form input {
+  width: 100%;
 }

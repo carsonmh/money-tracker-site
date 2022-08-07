@@ -2,11 +2,18 @@
 {% load static %}
 
 {% block content %}
-    <p>edit log:</p>
+<div class="main" style="height: 100%;">
+    <div class="center" style="height: 80%;">
+        <div class="form-element" style="height: 28em; text-align: center;">
+        <h1 style="text-align: center; padding: .7em;">edit log</h1>
 
-    <form action="{% url 'money_data:edit_log' log.id %}" method="post">
+    <form action="{% url 'money_data:edit_log' log.id %}" id="edit-log-form" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">save changes</button>
+        {{form}}
+        <div style="margin-top: 1em;"></div>
+        <button class="form-confirm-button confirm-button">confirm changes</button>
     </form>
+</div>
+</div>
+</div>
 {% endblock content %}

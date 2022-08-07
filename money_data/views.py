@@ -125,9 +125,6 @@ def line_chart(request):
 
     data = {'$/session': average_per_session, '$ total': total_money_made, '$ total this month': money_this_month}
 
-    print('average_per_session ' + str(average_per_session))
-    print('money_this_month ' + str(money_this_month))
-    print('total_money_made ' + str(total_money_made))
     context = {'graph_div': graph_div, 'data': data}
 
     return render(request, 'money_data/data.html', context)
@@ -135,8 +132,3 @@ def line_chart(request):
 from django import template
 
 register = template.Library()
-
-
-@register.filter(name="abs")
-def abs_filter(value):
-    return abs(value)
