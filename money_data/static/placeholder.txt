@@ -1,0 +1,1 @@
+This file allows pokertracker/static/ will be added to the project.

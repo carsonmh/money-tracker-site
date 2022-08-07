@@ -25,30 +25,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'z7e7t0(0iojoj)zechvua40fq(#6q)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
-# security.W018
-DEBUG = False
-
-# security.W016
-CSRF_COOKIE_SECURE = True
-
-# security.W012
-SESSION_COOKIE_SECURE = True
-
-# security.W008
-SECURE_SSL_REDIRECT = True
-
-# security.W004
-SECURE_HSTS_SECONDS = 31536000 # One year in seconds
-
-# Another security settings
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-
+DEBUG = True
 
 # Application definition
 
@@ -107,6 +88,16 @@ DATABASES = {
     }
 }
 
+APPLICATION_DIR = os.path.dirname(globals()['__file__']) + '/../'
+
+STATIC_ROOT = os.path.join(APPLICATION_DIR, 'money_data', 'static')
+
+
+# Heroku: Update database configuration from $DATABASE_URL.
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -156,19 +147,41 @@ STATICFILES_FINDERS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-APPLICATION_DIR = os.path.dirname(globals()['__file__']) + '/../'
-
-BOWER_COMPONENTS_ROOT = os.path.join(APPLICATION_DIR, 'components')
-
-BOWER_PATH = '/usr/local/bin/bower'
-
-BOWER_INSTALLED_APPS = (
-    'd3#3.5.5',
-    'nvd3#1.7.1',
-)
-
-STATIC_ROOT = os.path.join(APPLICATION_DIR, 'money_data', 'static')
-
 # my settings
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/users/login/'
+
+#heroku settings
+cwd = os.getcwd()
+if cwd == '/app' or cwd[:4] == '/tmp':
+    import dj_database_url
+    DATABASES={
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+
+    ALLOWED_HOSTS = ['*']
+
+    BASE_DIR = os.path.dirname(os.path.abspath)
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static')
+    )
+
+# security.W016
+# CSRF_COOKIE_SECURE = True
+
+# security.W012
+# SESSION_COOKIE_SECURE = True
+
+# security.W008
+# SECURE_SSL_REDIRECT = True
+
+# security.W004
+# SECURE_HSTS_SECONDS = 31536000
+ # One year in seconds
+
+# Another security settings
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
