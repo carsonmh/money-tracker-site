@@ -142,7 +142,7 @@ STATICFILES_FINDERS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # my settings
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/moneylogs'
 LOGIN_URL = '/users/login/'
 
 #heroku settings
