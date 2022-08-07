@@ -5,8 +5,8 @@
     <div class="center">
         <div class="form-element login-register">
             <h1>Welcome back</h1>
-            {% csrf_token %}
             <form method="post" action="{% url 'users:login' %}">
+                {% csrf_token %}
                 <input class="my-username-class form-input login-input" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="my-username-class" required="" id="id_username" placeholder="username"></p>
                 <input class="my-password-class form-input login-input" type="password" name="password" autocomplete="current-password" class="my-password-class" required="" id="id_password" placeholder="password"></p>
                 <input type="hidden" name="next" value="{% url 'money_data:moneylogs' %}" />
