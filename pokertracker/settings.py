@@ -23,10 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'z7e7t0(0iojoj)zechvua40fq(#6q)oaoykhl(-vg_*jz-)5!)')
 
+# prod settings
 ALLOWED_HOSTS = ['poker-bankroll-log.herokuapp.com']
-# ALLOWED_HOSTS = ['127.0.0.1']
-
 DEBUG = False
+
+# local settings
+# ALLOWED_HOSTS = ['127.0.0.1']
+# DEBUG = True
 
 # Application definition
 

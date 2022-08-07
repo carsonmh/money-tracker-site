@@ -1,0 +1,4 @@
+- make actual dollar format ($10.5 -> $10.50)
+- redirect user to logs when they are logged in
+- add help info to make logging easier
+- add security (https)
