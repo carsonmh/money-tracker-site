@@ -109,7 +109,10 @@ def line_chart(request):
 
     # session average
     money_list = list([i.money_made for i in moneylogs])
-    average_per_session = round(sum(money_list)/len(money_list),2 )
+    if len(money_list) != 0:
+        average_per_session = round(sum(money_list)/len(money_list),2 )
+    else: 
+        average_per_session = 0
 
     # total money made
     total_money_made = round(sum(money_list), 2)
@@ -117,7 +120,7 @@ def line_chart(request):
     # amount made this month
     currentMonth = datetime.now().month
     logs_this_month = list()
-    for i in MoneyLog.objects.all():
+    for i in moneylogs:
         if i.date_added.month == currentMonth:
             logs_this_month.append(i)
     money_this_month = [i.money_made for i in logs_this_month]
